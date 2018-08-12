@@ -1,0 +1,7 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "allowJs": false,
+        "sourceMap": true
+    }
+}

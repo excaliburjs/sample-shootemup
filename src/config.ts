@@ -1,6 +1,6 @@
 // configuration
 
-var Config = {
+const Config = {
    soundVolume : .1,
    playerBulletVelocity : -600,
    playerSpeed : 500,
@@ -8,9 +8,13 @@ var Config = {
    missileSpeed : -400,
    enemyBulletVelocity : -300,
    enemySpeed : 200,
+   enemyFireInterval: 900,
    enemyDamage : 10,
-   spawnTime : 1000,
+   bulletSize: 5,
+   spawnTime : 3000,
    healthBarHeight : 25,
    healthBarWidth : 400,
    totalHp : 100
 }
+
+export default Config;
