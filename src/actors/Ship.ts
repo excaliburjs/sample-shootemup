@@ -3,6 +3,7 @@ import { gameSheet, Resources, explosionSpriteSheet } from "../resources";
 import Config from "../config";
 import { Bullet } from "./Bullet";
 import { Baddie } from "./Baddie";
+import { animManager } from "./AnimationManager";
 
 type FireFunction = (engine: ex.Engine) => void;
 const throttle = function(func: FireFunction, throttle: number): FireFunction {
@@ -56,6 +57,7 @@ export class Ship extends ex.Actor {
 
         this.explode = explosionSpriteSheet.getAnimationForAll(engine, 40);
         this.explode.scale = new ex.Vector(3, 3);
+        this.explode.loop = false;
     }
 
     onPreCollision(evt: ex.PreCollisionEvent) {
@@ -72,7 +74,7 @@ export class Ship extends ex.Actor {
         if (this.hp <= 0) {
             // update game to display game over
             // gameOver = true;
-            this.explode.play(this.x, this.y);
+            animManager.play(this.explode, this.pos);
             Resources.explodeSound.play();
             this.kill();
          }

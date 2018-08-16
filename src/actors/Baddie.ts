@@ -2,6 +2,7 @@ import * as ex from "excalibur";
 import { Resources, gameSheet, explosionSpriteSheet } from "../resources";
 import Config from "../config";
 import { Bullet } from "./Bullet";
+import { animManager } from "./AnimationManager";
 
 export class Baddie extends ex.Actor {
     // All bullets belonging to baddies
@@ -36,6 +37,7 @@ export class Baddie extends ex.Actor {
 
         this.explode = explosionSpriteSheet.getAnimationForAll(engine, 40);
         this.explode.scale = new ex.Vector(3, 3);
+        this.explode.loop = false;
 
         // Setup patrolling behavior
         this.actions.moveTo(this.x, this.y + 800, Config.enemySpeed)
@@ -56,7 +58,8 @@ export class Baddie extends ex.Actor {
         if(!(evt.other instanceof Baddie) && 
            !ex.Util.contains(Baddie.Bullets, evt.other)) {
             Resources.explodeSound.play();
-            this.explode.play(this.x, this.y);
+            animManager.play(this.explode, this.pos);
+            
             // score += 100;
             this.fireTimer.cancel();
             this.kill(); 

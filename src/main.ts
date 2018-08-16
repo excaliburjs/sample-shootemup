@@ -5,12 +5,15 @@ import { Resources, loader } from './resources';
 import { Ship } from './actors/Ship';
 import { HealthBar } from './actors/HealthBar';
 import { Baddie } from './actors/Baddie';
+import { animManager } from './actors/AnimationManager';
 
 const game = new ex.Engine({
     backgroundColor: ex.Color.Black
 });
 game.backgroundColor = ex.Color.Black;
 game.setAntialiasing(false);
+
+game.add(animManager);
 
 // Todo separate file
 let gameOver = false;
@@ -39,6 +42,7 @@ var totalElapsed = 0;
 let baddieTimer = new ex.Timer(() => {
     var bad = new Baddie(Math.random()*1000 + 200, -100, 80, 80);
     game.add(bad);    
+    console.log(game.stats.currFrame.fps);
 }, Config.spawnTime, true, -1);
 
 game.addTimer(baddieTimer);
@@ -55,10 +59,12 @@ game.on('preupdate', (evt: ex.PreUpdateEvent) => {
 
 // Game events to handle
 game.on('hidden', () => {
+    console.log('pause');
     game.stop();
 });
 game.on('visible', () => {
-   game.start();
+    console.log('start');
+    game.start();
 });
 
 game.input.keyboard.on('press', (evt: ex.Input.KeyEvent) => {
