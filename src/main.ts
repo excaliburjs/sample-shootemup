@@ -6,6 +6,7 @@ import { Ship } from './actors/Ship';
 import { HealthBar } from './actors/HealthBar';
 import { Baddie } from './actors/Baddie';
 import { animManager } from './actors/AnimationManager';
+import { stats } from './stats';
 
 const game = new ex.Engine({
     backgroundColor: ex.Color.Black
@@ -27,11 +28,11 @@ game.add(ship);
 var healthBar = new HealthBar();
 game.add(healthBar);
 
-var scoreLabel = new ex.Label("Score: " + score, 20, 50);
+var scoreLabel = new ex.Label("Score: " + stats.score, 20, 50);
 scoreLabel.color = ex.Color.Azure;
 scoreLabel.scale = new ex.Vector(3, 3);
 scoreLabel.on('preupdate', function(evt){
-    this.text = "Score: " + score;
+    this.text = "Score: " + stats.score;
 });
 game.add(scoreLabel);
 
@@ -42,17 +43,16 @@ var totalElapsed = 0;
 let baddieTimer = new ex.Timer(() => {
     var bad = new Baddie(Math.random()*1000 + 200, -100, 80, 80);
     game.add(bad);    
-    console.log(game.stats.currFrame.fps);
 }, Config.spawnTime, true, -1);
 
 game.addTimer(baddieTimer);
 
 game.on('preupdate', (evt: ex.PreUpdateEvent) => {
-    if (gameOver && !gameoverLabel) {
+    if (stats.gameOver && !gameoverLabel) {
       gameoverLabel = new ex.Label("Game Over", game.halfDrawWidth - 250, game.halfDrawHeight);
-      gameoverLabel.color = ex.Color.Green;
-      gameoverLabel.scale = 8;
-      gameoverLabel.actions.blink(1, 1000, 400).repeatForever();
+      gameoverLabel.color = ex.Color.Green.clone();
+      gameoverLabel.scale = new ex.Vector(8,8);
+      gameoverLabel.actions.blink(1000, 1000, 400).repeatForever();
       game.add(gameoverLabel);
     }
 });

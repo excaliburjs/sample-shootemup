@@ -3,6 +3,7 @@ import { Resources, gameSheet, explosionSpriteSheet } from "../resources";
 import Config from "../config";
 import { Bullet } from "./Bullet";
 import { animManager } from "./AnimationManager";
+import { stats } from "../stats";
 
 export class Baddie extends ex.Actor {
     // All bullets belonging to baddies
@@ -60,7 +61,7 @@ export class Baddie extends ex.Actor {
             Resources.explodeSound.play();
             animManager.play(this.explode, this.pos);
             
-            // score += 100;
+            stats.score += 100;
             this.fireTimer.cancel();
             this.kill(); 
          }

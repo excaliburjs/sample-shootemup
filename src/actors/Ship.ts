@@ -4,6 +4,7 @@ import Config from "../config";
 import { Bullet } from "./Bullet";
 import { Baddie } from "./Baddie";
 import { animManager } from "./AnimationManager";
+import { stats } from "../stats";
 
 type FireFunction = (engine: ex.Engine) => void;
 const throttle = function(func: FireFunction, throttle: number): FireFunction {
@@ -22,7 +23,6 @@ const throttle = function(func: FireFunction, throttle: number): FireFunction {
 export class Ship extends ex.Actor {
     private flipBarrel = false;
     private throttleFire: FireFunction;
-    private hp = Config.totalHp;
     private explode: ex.Animation;
     constructor(x, y, width, height) {
         super({
@@ -64,14 +64,12 @@ export class Ship extends ex.Actor {
         if(evt.other instanceof Baddie || ex.Util.contains(Baddie.Bullets, evt.other)){
             Resources.hitSound.play();
             this.actions.blink(300, 300, 3);
-            this.hp -= Config.enemyDamage;
-
-            // healthBar.width = Config.healthBarWidth * (this.hp / Config.totalHp);
+            stats.hp -= Config.enemyDamage;
          }
     }
 
     onPostUpdate(engine: ex.Engine, delta: number) {
-        if (this.hp <= 0) {
+        if (stats.hp <= 0) {
             // update game to display game over
             // gameOver = true;
             animManager.play(this.explode, this.pos);

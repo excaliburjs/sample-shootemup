@@ -1,18 +1,22 @@
 import * as ex from "excalibur";
 import Config from "../config";
+import { stats } from "../stats";
 
-export class HealthBar extends ex.Label {
+export class HealthBar extends ex.Actor {
 
     constructor() {
         super({
             color: ex.Color.Green,
+            x: 20,
+            y: 0,
+            width: 0,
+            height: 0,
+            anchor: ex.Vector.Zero.clone(),
             collisionType: ex.CollisionType.PreventCollision,
         });
     }
     
     onInitialize(engine: ex.Engine) {
-        this.text = 'HP ';
-        this.scale = new ex.Vector(3, 3);
         this.x = 20;
         this.y = engine.drawHeight - Config.healthBarHeight - 20;
         this.setWidth(Config.healthBarWidth);
@@ -20,34 +24,17 @@ export class HealthBar extends ex.Label {
         
     }
 
+    onPreUpdate() {
+        this.setWidth(Config.healthBarWidth * (stats.hp / Config.totalHp));
+    }
+
     onPostDraw(ctx: CanvasRenderingContext2D) {
-       ctx.fillStyle = this.color.toString();
        ctx.strokeStyle = this.color.toString();
-       ctx.fillRect(this.x + 50, this.y - this.getHeight(), this.getWidth(), this.getHeight());
-       ctx.strokeRect(this.x + 50, this.y - this.getHeight(), Config.healthBarWidth, this.getHeight());
+       ctx.fillStyle = this.color.toString();
+       ctx.lineWidth = 3;
+       ctx.font = 'normal 30px sans-serif'
+       ctx.fillText("HP:", -5, - this.getHeight());
+       ctx.strokeRect(-5, -5, Config.healthBarWidth + 10, this.getHeight() + 10);
     }
 
 }
-
-
-// var HealthBarOld = ex.Label.extend({
-//     init: function(){
-//        this.preventCollisions = true;
-//        this.text = "HP ";
-//        this.font = Config.font;
-//        this.scale = 3;
-//        this.x = 20;
-//        this.y = game.height - Config.healthBarHeight - 20;
-//        this.width = Config.healthBarWidth;
-//        this.height = Config.healthBarHeight;
-//        this.color = Color.Green;
-//     },
-//     draw : function(ctx, delta){
-//        this.super.draw.call(this, ctx, delta);
- 
-//        ctx.fillStyle = this.color.toString();
-//        ctx.strokeStyle = this.color.toString();
-//        ctx.fillRect(this.x + 50, this.y - this.height, this.width, this.height);
-//        ctx.strokeRect(this.x + 50, this.y - this.height, Config.healthBarWidth, this.height);
-//     }
-//  });
