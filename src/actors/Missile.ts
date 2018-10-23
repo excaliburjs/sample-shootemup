@@ -32,37 +32,3 @@ export class Missile extends ex.Actor {
          }
     }
 }
-
-
-// var MissileOld = Actor.extend({
-//     init : function() {
-//        var anim = gameSheet.getAnimationByIndices(game, [13, 14, 15], 50);
-//        anim.loop = true;
-//        this.setHeight(60);
-//        this.setWidth(20);
-//        this.setCenterDrawing(true);
-//        this.addDrawing("default", anim);
-//        anim.setScale(3);
-//        rocketSound.play();
- 
-//        this.addEventListener('collision', function(evt){
-//           if(evt.other !== this.owner && !(evt.other instanceof Bullet)){
-//              rocketSound.stop();
-//              explodeSound.play();
-//              this.kill();
-//           }
-//        });
-//     },
-//     update : function(engine, delta){
-//        this.super.update.call(this, engine, delta);
- 
-//        // Clean up if bullets leave the viewport
-//        if(this.x > engine.width || 
-//           this.x < 0 || 
-//           this.y > engine.height || 
-//           this.y < 0){
-//           rocketSound.stop();
-//           this.kill(); 
-//        }
-//     }
-//  });

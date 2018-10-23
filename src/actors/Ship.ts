@@ -39,7 +39,7 @@ export class Ship extends ex.Actor {
         this.on('precollision', this.onPreCollision);
 
         // Keyboard
-        engine.input.keyboard.on('press', (evt) => this.handleKeyEvent(engine, evt));
+        engine.input.keyboard.on('hold', (evt) => this.handleKeyEvent(engine, evt));
         engine.input.keyboard.on('release', (evt: ex.Input.KeyEvent) => { 
             if(evt.key !== ex.Input.Keys.Space) {
                 this.vel = ex.Vector.Zero.clone()
@@ -65,6 +65,10 @@ export class Ship extends ex.Actor {
             Resources.hitSound.play();
             this.actions.blink(300, 300, 3);
             stats.hp -= Config.enemyDamage;
+            if (stats.hp <= 0) {
+                stats.gameOver = true;
+                this.kill();
+            }
          }
     }
 
@@ -114,22 +118,22 @@ export class Ship extends ex.Actor {
         // Some keys do the same thing
         if (evt.key === ex.Input.Keys.Up ||
             evt.key === ex.Input.Keys.W) {
-            dir.y = -1;
+            dir.y += -1;
         }
 
         if (evt.key === ex.Input.Keys.Left ||
             evt.key === ex.Input.Keys.A) {
-            dir.x = -1;
+            dir.x += -1;
         }
 
         if (evt.key === ex.Input.Keys.Right ||
             evt.key === ex.Input.Keys.D) {
-            dir.x = 1;
+            dir.x += 1;
         }
 
         if (evt.key === ex.Input.Keys.Down ||
             evt.key ===  ex.Input.Keys.S) {
-            dir.y = 1;
+            dir.y += 1;
         }
         
 

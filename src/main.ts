@@ -16,19 +16,14 @@ game.setAntialiasing(false);
 
 game.add(animManager);
 
-// Todo separate file
-let gameOver = false;
-let score = 0;
 
-
-
-var ship = new Ship(game.halfDrawWidth, 800, 80, 80);
+const ship = new Ship(game.halfDrawWidth, 800, 80, 80);
 game.add(ship);
 
-var healthBar = new HealthBar();
+const healthBar = new HealthBar();
 game.add(healthBar);
 
-var scoreLabel = new ex.Label("Score: " + stats.score, 20, 50);
+const scoreLabel = new ex.Label("Score: " + stats.score, 20, 50);
 scoreLabel.color = ex.Color.Azure;
 scoreLabel.scale = new ex.Vector(3, 3);
 scoreLabel.on('preupdate', function(evt){
@@ -37,8 +32,12 @@ scoreLabel.on('preupdate', function(evt){
 game.add(scoreLabel);
 
 
-var gameoverLabel;
-var totalElapsed = 0;
+const gameOverLabel = new ex.Label("Game Over", game.halfDrawWidth - 250, game.halfDrawHeight);
+gameOverLabel.color = ex.Color.Green.clone();
+gameOverLabel.scale = new ex.Vector(8,8);
+gameOverLabel.actions.blink(1000, 1000, 400).repeatForever();
+
+
 
 let baddieTimer = new ex.Timer(() => {
     var bad = new Baddie(Math.random()*1000 + 200, -100, 80, 80);
@@ -48,12 +47,8 @@ let baddieTimer = new ex.Timer(() => {
 game.addTimer(baddieTimer);
 
 game.on('preupdate', (evt: ex.PreUpdateEvent) => {
-    if (stats.gameOver && !gameoverLabel) {
-      gameoverLabel = new ex.Label("Game Over", game.halfDrawWidth - 250, game.halfDrawHeight);
-      gameoverLabel.color = ex.Color.Green.clone();
-      gameoverLabel.scale = new ex.Vector(8,8);
-      gameoverLabel.actions.blink(1000, 1000, 400).repeatForever();
-      game.add(gameoverLabel);
+    if (stats.gameOver) {
+        game.add(gameOverLabel);
     }
 });
 
