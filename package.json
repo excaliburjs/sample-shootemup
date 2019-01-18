@@ -28,14 +28,14 @@
     "url": "https://github.com/excaliburjs/sample-shootemup/issues"
   },
   "dependencies": {
-    "excalibur": "0.19.1"
+    "excalibur": "0.20.0"
   },
   "devDependencies": {
     "@types/node": "10.5.8",
     "file-loader": "1.1.11",
-    "ts-loader": "4.4.2",
-    "typescript": "3.0.1",
-    "webpack": "4.16.5",
+    "ts-loader": "5.3.3",
+    "typescript": "3.2.4",
+    "webpack": "4.28.4",
     "webpack-cli": "3.1.0",
     "webpack-dev-server": "3.1.5"
   }

@@ -70,11 +70,11 @@ export class Baddie extends ex.Actor {
 
     private fire(engine: ex.Engine) {
         this.fireAngle += Math.PI/20;
-        let bulletVelocity = new ex.Vector(
+        const bulletVelocity = new ex.Vector(
             Config.enemyBulletVelocity * Math.cos(this.fireAngle),
             Config.enemyBulletVelocity * Math.sin(this.fireAngle));
 
-        let bullet = new Bullet(this.x, this.y, bulletVelocity.x, bulletVelocity.y, this);
+        const bullet = new Bullet(this.x, this.y, bulletVelocity.x, bulletVelocity.y, this);
         Baddie.Bullets.push(bullet);
         engine.add(bullet);
     }
