@@ -1,9 +1,9 @@
 import * as ex from "excalibur";
 import { gameSheet, Resources, explosionSpriteSheet } from "../resources";
 import Config from "../config";
-import { Bullet } from "./Bullet";
-import { Baddie } from "./Baddie";
-import { animManager } from "./AnimationManager";
+import { Bullet } from "./bullet";
+import { Baddie } from "./baddie";
+import { animManager } from "./animation-manager";
 import { stats } from "../stats";
 
 type FireFunction = (engine: ex.Engine) => void;

@@ -1,8 +1,8 @@
 import * as ex from "excalibur";
 import { Resources, gameSheet, explosionSpriteSheet } from "../resources";
 import Config from "../config";
-import { Bullet } from "./Bullet";
-import { animManager } from "./AnimationManager";
+import { Bullet } from "./bullet";
+import { animManager } from "./animation-manager";
 import { stats } from "../stats";
 
 export class Baddie extends ex.Actor {

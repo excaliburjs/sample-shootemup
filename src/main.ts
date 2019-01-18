@@ -3,9 +3,9 @@ import * as ex from 'excalibur';
 import Config from './config';
 import { Resources, loader } from './resources';
 import { Ship } from './actors/Ship';
-import { HealthBar } from './actors/HealthBar';
-import { Baddie } from './actors/Baddie';
-import { animManager } from './actors/AnimationManager';
+import { HealthBar } from './actors/health-bar';
+import { Baddie } from './actors/baddie';
+import { animManager } from './actors/animation-manager';
 import { stats } from './stats';
 
 const game = new ex.Engine({

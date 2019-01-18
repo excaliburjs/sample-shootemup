@@ -1,6 +1,6 @@
 import * as ex from "excalibur";
 import { Resources, gameSheet } from "../resources";
-import { Bullet } from "./Bullet";
+import { Bullet } from "./bullet";
 
 export class Missile extends ex.Actor {
     constructor() {

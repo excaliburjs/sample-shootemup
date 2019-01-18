@@ -1,7 +1,7 @@
 import * as ex from "excalibur";
 import Config from "../config";
 import { gameSheet } from "../resources";
-import { Baddie } from "./Baddie";
+import { Baddie } from "./baddie";
 
 export class Bullet extends ex.Actor {
     public owner: ex.Actor;
