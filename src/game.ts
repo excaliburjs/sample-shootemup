@@ -10,8 +10,8 @@ import { animManager } from './actors/animation-manager';
 
 export class Game extends ex.Scene {
 
-    constructor() {
-        super();
+    constructor(engine: ex.Engine) {
+        super(engine);
     }
 
     onInitialize(engine: ex.Engine) {

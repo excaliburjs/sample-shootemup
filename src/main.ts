@@ -4,33 +4,33 @@ import Config from './config';
 import { Resources, loader } from './resources';
 import { Game } from './game';
 
-const game = new ex.Engine({
+const engine = new ex.Engine({
     backgroundColor: ex.Color.Black
 });
-game.backgroundColor = ex.Color.Black;
-game.setAntialiasing(false);
+engine.backgroundColor = ex.Color.Black;
+engine.setAntialiasing(false);
 
 // Setup game scene
-game.add('game', new Game());
-game.goToScene('game');
+engine.add('game', new Game(engine));
+engine.goToScene('game');
 
 // Game events to handle
-game.on('hidden', () => {
+engine.on('hidden', () => {
     console.log('pause');
-    game.stop();
+    engine.stop();
 });
-game.on('visible', () => {
+engine.on('visible', () => {
     console.log('start');
-    game.start();
+    engine.start();
 });
 
-game.input.keyboard.on('press', (evt: ex.Input.KeyEvent) => {
+engine.input.keyboard.on('press', (evt: ex.Input.KeyEvent) => {
     if (evt.key === ex.Input.Keys.D) {
-      game.isDebug = !game.isDebug;
+      engine.isDebug = !engine.isDebug;
     }
 });
 
-game.start(loader).then(() => {
+engine.start(loader).then(() => {
    Resources.laserSound.volume = Config.soundVolume;
    Resources.explodeSound.volume = Config.soundVolume;
    Resources.enemyFireSound.volume = Config.soundVolume;
