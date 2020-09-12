@@ -28,7 +28,7 @@
     "url": "https://github.com/excaliburjs/sample-shootemup/issues"
   },
   "dependencies": {
-    "excalibur": "0.24.4"
+    "excalibur": "0.24.5"
   },
   "devDependencies": {
     "file-loader": "4.3.0",
