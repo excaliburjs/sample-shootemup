@@ -21,7 +21,7 @@ export class Baddie extends ex.Actor {
             height: height,
         });
 
-        // Passive recieves collision events but does not participate in resolution
+        // Passive receives collision events but does not participate in resolution
         this.body.collisionType = ex.CollisionType.Passive;
         // Enemy groups does not collide with itself
         this.body.group = Baddie.group;
@@ -62,7 +62,7 @@ export class Baddie extends ex.Actor {
 
     }
 
-    // Fires before excalibur collision resoulation
+    // Fires before excalibur collision resolution
     private onPreCollision(evt: ex.PreCollisionEvent) {
         // only kill a baddie if it collides with something that isn't a baddie or a baddie bullet
         if(!(evt.other instanceof Baddie) &&
