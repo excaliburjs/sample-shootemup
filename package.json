@@ -30,7 +30,7 @@
     "url": "https://github.com/excaliburjs/sample-shootemup/issues"
   },
   "dependencies": {
-    "excalibur": "0.28.1"
+    "excalibur": "0.32.0"
   },
   "devDependencies": {
     "@excaliburjs/testing": "0.26.0",
