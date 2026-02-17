@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@excaliburjs/testing": "0.26.0",
-    "copy-webpack-plugin": "10.2.4",
+    "copy-webpack-plugin": "13.0.1",
     "ts-loader": "9.5.4",
     "typescript": "4.9.5",
     "webpack": "5.105.2",
